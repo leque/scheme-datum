@@ -1,0 +1,46 @@
+* scheme-datum.el
+
+Write an elisp datum as a R7RS Scheme datum.
+
+This package can handle
+
+- integers,
+- floats,
+- strings,
+- symbols,
+- cons cells,
+- nil, and
+- vectors.
+
+** =t= and =nil=
+
+=t= is written as a symbol. =nil= is written as an empty list.
+
+** Examples
+
+#+BEGIN_SRC emacs-lisp
+  (require 'scheme-datum)
+
+  (scheme-datum-write-simple '(42 'foo ["bar"] . 3.14))
+  ;; -| (42 'foo #("bar") . 3.14)
+
+  (scheme-datum-write-simple (list (/ 1 0.0) (/ -1 0.0) (/ 0 0.0)))
+  ;; -| (+inf.0 -inf.0 +nan.0)
+
+  (scheme-datum-write-simple '\(*\ 1\ 2\))
+  ;; -| |(* 1 2)|
+
+  (scheme-datum-write-simple '+-*/_~!@$%^&=:<>{})
+  ;; -| |+-*/_~!@$%^&=:<>{}|
+
+  (scheme-datum-write-simple '|)
+  ;; -| |\||
+
+  (scheme-datum-write-simple '##)
+  ;; -| ||
+
+  (scheme-datum-write-simple (list t nil))
+  ;; -| (t ())
+#+END_SRC
+
+#+OPTIONS: toc:nil num:nil
