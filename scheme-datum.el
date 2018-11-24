@@ -83,7 +83,7 @@
   "the value written as Scheme's true (#t).")
 
 (defconst scheme-datum-false (make-scheme-datum-false)
-  "the value written as Scheme's false (#t)")
+  "the value written as Scheme's false (#f)")
 
 (defconst scheme-datum-nil-symbol (make-scheme-datum-nil)
   "the value written as Scheme's nil symbol")
