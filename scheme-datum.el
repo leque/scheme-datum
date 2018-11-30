@@ -159,6 +159,13 @@
   (let* ((name (symbol-name sym))
          (len (length name)))
     (and (> len 0)
+         (cl-loop for sym in '("+inf.0" "-inf.0"
+                               "+nan.0" "-nan.0"
+                               "+i" "-i"
+                               )
+                  never (eq t (compare-strings sym nil nil
+                                               name nil nil
+                                               t)))
          (or
           ;; initial subsequent*
           (and (scheme-datum--initial? (aref name 0))
